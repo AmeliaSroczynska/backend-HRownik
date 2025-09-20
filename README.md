@@ -1,3 +1,5 @@
+<img width="350" height="107" alt="HRownik@2x" src="https://github.com/user-attachments/assets/26e05f22-287e-4ed0-ba45-467abb9a3faa" /> 
+
 # HRownik
 HRownik to nowoczesna aplikacja webowa wspierająca organizacje studenckie w efektywnym zarządzaniu ich działalnością. Projekt powstał, aby rozwiązać problem braku porządku i przejrzystości w codziennych zadaniach organizacji, ułatwiając pracę koordynatorom i członkom zespołów.
 
