@@ -3,7 +3,7 @@ import * as fs from "node:fs/promises";
 import { PDFDocument } from "pdf-lib";
 import { PrismaService } from "prisma/prisma.service";
 
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 
 @Injectable()
 export class CertificateService {
@@ -30,5 +30,23 @@ export class CertificateService {
     }
     const zipBytes = await zip.generateAsync({ type: "nodebuffer" });
     return zipBytes;
+  }
+
+  async generateOneCertificate(member_id: number) {
+    const member = await this.prisma.members.findUnique({
+      where: { id: member_id },
+    });
+    if (member == null) {
+      throw new NotFoundException("No member with this id found in database");
+    }
+    const template = await fs.readFile("src/certificate/certificate.pdf");
+    const pdfDocument = await PDFDocument.load(template);
+
+    const page = pdfDocument.getPages()[0];
+
+    page.drawText(
+      `Certyfikat dla uzytkownika ${member.name} ${member.surname}`,
+    );
+    return await pdfDocument.save();
   }
 }

@@ -1,6 +1,6 @@
 import type { Response } from "express";
 
-import { Controller, Get, Res } from "@nestjs/common";
+import { Controller, Get, Param, ParseIntPipe, Res } from "@nestjs/common";
 import { ApiOperation, ApiTags } from "@nestjs/swagger";
 
 import { CertificateService } from "./certificate.service";
@@ -12,7 +12,7 @@ export class CertificateController {
 
   @Get("/generate/all")
   @ApiOperation({ summary: "Generate all avaible certificates" })
-  async download(@Res() response: Response) {
+  async generateAll(@Res() response: Response) {
     const zip = await this.certificateService.generateCertificates();
 
     response.set({
@@ -20,5 +20,20 @@ export class CertificateController {
     });
 
     response.send(zip);
+  }
+
+  @Get("/generate/:id")
+  @ApiOperation({
+    summary: "Generate one certificate for user with choosen id",
+  })
+  async generateOne(
+    @Param("id", ParseIntPipe) id: number,
+    @Res() response: Response,
+  ) {
+    const pdf = await this.certificateService.generateOneCertificate(id);
+    response.set({
+      "Content-Type": "application/pdf",
+    });
+    response.send(pdf);
   }
 }
