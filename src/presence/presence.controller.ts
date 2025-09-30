@@ -1,28 +1,29 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
   ParseIntPipe,
+  Patch,
+  Post,
 } from "@nestjs/common";
-import { PresenceService } from "./presence.service";
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from "@nestjs/swagger";
+
+import { ErrorResponse } from "../common/error-response.schema";
 import { CreatePresenceDto } from "./dto/create-presence.dto";
 import { UpdatePresenceDto } from "./dto/update-presence.dto";
-import {
-  ApiTags,
-  ApiOperation,
-  ApiCreatedResponse,
-  ApiOkResponse,
-  ApiNotFoundResponse,
-  ApiBadRequestResponse,
-  ApiParam,
-  ApiBody,
-} from "@nestjs/swagger";
 import { PresenceEntity } from "./entities/presence.entity";
-import { ErrorResponse } from "../common/error-response.schema";
+import { PresenceService } from "./presence.service";
 
 @ApiTags("Presence")
 @Controller("presence")

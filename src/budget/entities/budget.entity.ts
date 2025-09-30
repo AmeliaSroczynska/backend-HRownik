@@ -1,5 +1,6 @@
-import { ApiProperty } from "@nestjs/swagger";
 import { Budget } from "@prisma/client";
+
+import { ApiProperty } from "@nestjs/swagger";
 
 export class BudgetEntity implements Budget {
   @ApiProperty()

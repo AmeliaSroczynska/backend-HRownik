@@ -1,11 +1,12 @@
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import {
-  IsString,
-  IsNotEmpty,
   IsEmail,
-  IsOptional,
   IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
 } from "class-validator";
+
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 export class CreateMemberDto {
   @ApiProperty({ example: "Genowefa", description: "First name of the member" })

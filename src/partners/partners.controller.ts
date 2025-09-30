@@ -1,28 +1,29 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
   ParseIntPipe,
+  Patch,
+  Post,
 } from "@nestjs/common";
-import { PartnersService } from "./partners.service";
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from "@nestjs/swagger";
+
+import { ErrorResponse } from "../common/error-response.schema";
 import { CreatePartnerDto } from "./dto/create-partner.dto";
 import { UpdatePartnerDto } from "./dto/update-partner.dto";
-import {
-  ApiTags,
-  ApiOperation,
-  ApiCreatedResponse,
-  ApiOkResponse,
-  ApiBadRequestResponse,
-  ApiNotFoundResponse,
-  ApiParam,
-  ApiBody,
-} from "@nestjs/swagger";
 import { PartnerEntity } from "./entities/partner.entity";
-import { ErrorResponse } from "../common/error-response.schema";
+import { PartnersService } from "./partners.service";
 
 @ApiTags("Partners")
 @Controller("partners")

@@ -1,12 +1,13 @@
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import {
-  IsString,
+  IsInt,
   IsNotEmpty,
   IsNumber,
-  IsInt,
   IsOptional,
+  IsString,
   Min,
 } from "class-validator";
+
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 export class CreateBudgetDto {
   @ApiProperty({

@@ -1,13 +1,14 @@
 import { Answer } from "@prisma/client";
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import {
-  IsString,
-  IsNotEmpty,
   IsEmail,
-  IsOptional,
   IsEnum,
   IsInt,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
 } from "class-validator";
+
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 export class CreatePartnerDto {
   @ApiProperty({

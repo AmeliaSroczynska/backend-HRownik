@@ -1,7 +1,9 @@
+import { PrismaService } from "prisma/prisma.service";
+
 import { Injectable } from "@nestjs/common";
+
 import { CreatePresenceDto } from "./dto/create-presence.dto";
 import { UpdatePresenceDto } from "./dto/update-presence.dto";
-import { PrismaService } from "prisma/prisma.service";
 
 @Injectable()
 export class PresenceService {

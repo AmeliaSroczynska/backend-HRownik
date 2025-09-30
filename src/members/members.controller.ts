@@ -1,29 +1,30 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
   ParseIntPipe,
+  Patch,
+  Post,
 } from "@nestjs/common";
-import { MembersService } from "./members.service";
+import {
+  ApiBadRequestResponse,
+  ApiBody,
+  ApiCreatedResponse,
+  ApiNoContentResponse,
+  ApiNotFoundResponse,
+  ApiOkResponse,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from "@nestjs/swagger";
+
+import { ErrorResponse } from "../common/error-response.schema";
 import { CreateMemberDto } from "./dto/create-member.dto";
 import { UpdateMemberDto } from "./dto/update-member.dto";
-import {
-  ApiTags,
-  ApiOperation,
-  ApiCreatedResponse,
-  ApiOkResponse,
-  ApiBadRequestResponse,
-  ApiNotFoundResponse,
-  ApiNoContentResponse,
-  ApiParam,
-  ApiBody,
-} from "@nestjs/swagger";
 import { MemberEntity } from "./entities/member.entity";
-import { ErrorResponse } from "../common/error-response.schema";
+import { MembersService } from "./members.service";
 
 @ApiTags("Members")
 @Controller("members")

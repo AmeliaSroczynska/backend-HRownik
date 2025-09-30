@@ -1,7 +1,9 @@
+import { PrismaService } from "prisma/prisma.service";
+
 import { Injectable } from "@nestjs/common";
+
 import { CreateBudgetDto } from "./dto/create-budget.dto";
 import { UpdateBudgetDto } from "./dto/update-budget.dto";
-import { PrismaService } from "prisma/prisma.service";
 
 @Injectable()
 export class BudgetService {

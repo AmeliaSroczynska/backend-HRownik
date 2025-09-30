@@ -1,5 +1,4 @@
 import { Type } from "class-transformer";
-import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import {
   IsBoolean,
   IsDateString,
@@ -8,6 +7,8 @@ import {
   IsOptional,
   IsString,
 } from "class-validator";
+
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 
 export class CreatePresenceDto {
   @ApiProperty({
