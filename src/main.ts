@@ -12,6 +12,10 @@ async function bootstrap() {
     .setTitle("HRownik")
     .setDescription("Twoje procesy rekrutacyjne w jednym miejscu")
     .setVersion("1.0")
+    .addTag("Budget", "Zarządzanie pozycjami budżetu")
+    .addTag("Members", "Członkowie")
+    .addTag("Partners", "Partnerzy")
+    .addTag("Presence", "Obecności")
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup("api", app, document);
