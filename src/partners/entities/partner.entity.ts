@@ -1,5 +1,6 @@
+import { Answer, Partners } from "@prisma/client";
+
 import { ApiProperty } from "@nestjs/swagger";
-import { Partners, Answer } from "@prisma/client";
 
 export class PartnerEntity implements Partners {
   @ApiProperty()
