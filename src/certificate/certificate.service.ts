@@ -32,28 +32,6 @@ async function preparePdf(name: string, surname: string, section: string) {
     x: (page.getWidth() - customFont1.widthOfTextAtSize(text1, 40)) / 2,
   });
 
-  page.drawText("kursu Wakacyjnego", {
-    color: colorRgb,
-    font: customFont2,
-    size: 32,
-    x:
-      (page.getWidth() -
-        customFont2.widthOfTextAtSize("kursu Wakacyjnego", 32)) /
-      2,
-    y: 300,
-  });
-
-  page.drawText("Wyzwania - scieżka", {
-    color: colorRgb,
-    font: customFont2,
-    size: 32,
-    x:
-      (page.getWidth() -
-        customFont2.widthOfTextAtSize("Wyzwania - scieżka", 32)) /
-      2,
-    y: 265,
-  });
-
   page.drawText(text2, {
     color: colorRgb,
     font: customFont2,
@@ -68,11 +46,34 @@ async function preparePdf(name: string, surname: string, section: string) {
 export class CertificateService {
   constructor(private prisma: PrismaService) {}
 
-  //trzeba bedzie zaladowac jeszcze fonta z polskimi znakami
   async generateCertificates() {
     const zip = JSZip();
 
     const members = await this.prisma.members.findMany();
+
+    for (const member of members) {
+      const pdf = await preparePdf(
+        member.name,
+        member.surname,
+        member.section ?? "",
+      );
+      const pdfBytes = await pdf.save();
+      zip.file(`${member.name}${member.surname}.pdf`, pdfBytes);
+    }
+    const zipBytes = await zip.generateAsync({ type: "nodebuffer" });
+    return zipBytes;
+  }
+
+  async generateSpecificCertificate(ids: number[]) {
+    const zip = JSZip();
+
+    const members = await this.prisma.members.findMany({
+      where: {
+        id: {
+          in: ids,
+        },
+      },
+    });
 
     for (const member of members) {
       const pdf = await preparePdf(
