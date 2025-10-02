@@ -18,7 +18,7 @@ import { CertificateService } from "./certificate.service";
 export class CertificateController {
   constructor(private readonly certificateService: CertificateService) {}
 
-  @Get("/generate/all")
+  @Post("/generate/all")
   @ApiOperation({ summary: "Generate all avaible certificates" })
   @ApiResponse({
     status: 200,
@@ -34,7 +34,7 @@ export class CertificateController {
     response.send(zip);
   }
 
-  @Get("/generate/specific")
+  @Post("/generate/specific")
   @ApiOperation({ summary: "Generate for specific id" })
   @ApiResponse({
     status: 200,
@@ -57,7 +57,7 @@ export class CertificateController {
     @Body("ids") ids: number[],
     @Res() response: Response,
   ) {
-    if (ids.length < 0) {
+    if (ids.length === 0) {
       throw new BadRequestException("Wrong id array");
     }
     const zip = await this.certificateService.generateSpecificCertificate(ids);
@@ -69,7 +69,7 @@ export class CertificateController {
     response.send(zip);
   }
 
-  @Get("/generate/:id")
+  @Post("/generate/:id")
   @ApiOperation({
     summary: "Generate one certificate for user with choosen id",
   })
