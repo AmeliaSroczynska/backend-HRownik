@@ -4,9 +4,9 @@ import {
   BadRequestException,
   Body,
   Controller,
-  Get,
   Param,
   ParseIntPipe,
+  Post,
   Res,
 } from "@nestjs/common";
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
